@@ -1,0 +1,24 @@
+        private bool LimiteDeTablero(string color)
+        {
+            List<PictureBox> bandoContrario = color == "Blanca" ? Negras : Blancas;
+            List<Point> posiciones = new List<Point>();
+            int sigPosicion = color == "Balnca" ? -50 : 50;
+            posiciones.Add(new Point(seleccionado.Location.X + 50, seleccionado.Location.Y + sigPosicion));
+            posiciones.Add(new Point(seleccionado.Location.X - 50, seleccionado.Location.Y + sigPosicion));
+            bool resultado = false;
+            for(int i = 0; i < posiciones.Count; i++)
+            {
+                if(posiciones[i].X>=50 && posiciones[i].X<=400 && posiciones[i].Y >= 50 && posiciones[i].Y <= 400)
+                {
+                    if (!Ocupado(posiciones[i], Blancas) && !Ocupado(posiciones[i], Negras))
+                    {
+                        Point puntoMedio = new Point(Promedio(posiciones[i].X, seleccionado.Location.X), Promedio(posiciones[i].Y, seleccionado.Location.Y));
+                        if (Ocupado(puntoMedio, bandoContrario))
+                        {
+                            resultado = true;
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }

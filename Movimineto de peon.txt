@@ -1,0 +1,23 @@
+        private bool Validacion(PictureBox origen,PictureBox destino)
+        {
+            Point puntoOrigen = origen.Location;
+            Point puntoDestino = destino.Location;
+            int avanceY = puntoOrigen.Y - puntoDestino.Y;
+            int avanceX = puntoOrigen.X - puntoDestino.X;
+            if (TurnoBlancas)
+            {
+                List<PictureBox> bandoContrario = Negras;
+                if (avanceY == -50 && avanceX == 0)
+                {
+                    return true;
+                }
+            }
+            if (!TurnoBlancas)
+            {
+                List<PictureBox> bandoContrario = Negras;
+                if (avanceY == 50 && avanceX == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
